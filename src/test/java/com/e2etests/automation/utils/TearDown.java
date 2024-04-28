@@ -10,6 +10,7 @@ public class TearDown {
 	
 	
 	/**
+	 *  * @Zied Hannachi
 	 * This method is used to close browser. This method is called after the
 	 * invocation of each test method in given class.
 	 *

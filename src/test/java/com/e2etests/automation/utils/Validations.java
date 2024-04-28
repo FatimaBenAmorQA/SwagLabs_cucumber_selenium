@@ -24,7 +24,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 /**
-@Ghada TRABELSI
+ * @Zied Hannachi
  * This class is used to perform various kinds of validations in the test cases.
  */
 public class Validations extends BasePage {

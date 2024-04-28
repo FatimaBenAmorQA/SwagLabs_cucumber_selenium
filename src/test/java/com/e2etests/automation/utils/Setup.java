@@ -17,6 +17,7 @@ public class Setup {
 	public static WebDriver driver;
 
 	/**
+	 *  @Zied Hannachi
 	 * This method is used to open browser. This method is called before the
 	 * invocation of each test method in the given class. In this method we need to
 	 * pass browser name which will invoke the respective driver.
