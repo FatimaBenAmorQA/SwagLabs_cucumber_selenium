@@ -30,8 +30,18 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    - name: Set up Maven
-      uses: ruby/setup-maven@v1
+    - name: Download and set up Maven
+      run: |
+        curl -sL https://archive.apache.org/dist/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.zip -o maven.zip
+        Expand-Archive -Path maven.zip -DestinationPath $env:USERPROFILE
+        echo "MAVEN_HOME=$env:USERPROFILE/apache-maven-3.8.4" >> $env:GITHUB_ENV
+        echo "PATH=$env:MAVEN_HOME/bin;$env:PATH" >> $env:GITHUB_ENV
+
+    - name: Set up Maven settings
+      run: |
+        $env:M2_HOME = "$env:USERPROFILE/apache-maven-3.8.4"
+        $env:PATH = "$env:M2_HOME/bin;$env:PATH"
+        maven --version
 
     - name: Install dependencies
       run: mvn install -DskipTests
