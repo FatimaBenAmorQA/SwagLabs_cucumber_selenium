@@ -137,30 +137,6 @@
         </dependency>
   </dependencies>
 
-<build>
-    <plugins>
-        <!-- Autres plugins... -->
-        <plugin>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-maven-plugin</artifactId>
-            <version>7.15.0</version>
-            <executions>
-                <execution>
-                    <id>generate-html-report</id>
-                    <phase>verify</phase>
-                    <goals>
-                        <goal>generate</goal>
-                    </goals>
-                    <configuration>
-                        <reportsDirectory>${project.build.directory}/cucumber-reports</reportsDirectory>
-                        <pluginName>html</pluginName>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
-    </plugins>
-</build>
-
 
 
 </project>
