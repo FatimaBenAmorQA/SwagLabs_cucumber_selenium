@@ -1,6 +1,5 @@
 package com.e2etests.automation.step_definitions;
 
-import org.openqa.selenium.JavascriptExecutor;
 
 import com.e2etests.automation.page_object.ScenarioPassantPage;
 import com.e2etests.automation.utils.ConfigFileReader;
@@ -139,8 +138,10 @@ public class ScenarioPassantStepDefinition {
 
 	}
 	@When("Je clique surle bouton Logout")
-	public void jeCliqueSurleBoutonLogout() {
+	public void jeCliqueSurleBoutonLogout() throws InterruptedException {
 		seleniumUtils.scrollPageToLeft(Setup.driver);
+		Long mediumWait =  seleniumUtils.getWait("MediumWait");
+		Thread.sleep(mediumWait);
 		seleniumUtils.click(scenarioPassantPage.logoutButton);
 
 	}
