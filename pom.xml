@@ -148,7 +148,7 @@
                     <include>**/*Test.java</include>
                 </includes>
                 <systemPropertyVariables>
-                    <cucumber.options>--plugin html:target/cucumber-reports/report.html</cucumber.options>
+                    <cucumber.options>--plugin=html:target/cucumber-reports/report.html</cucumber.options>
                 </systemPropertyVariables>
             </configuration>
         </plugin>
