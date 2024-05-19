@@ -45,3 +45,11 @@ jobs:
 
     - name: Run tests
       run: mvn test
+    - name: Generate Cucumber report
+      run: mvn verify -Dcucumber.options="--plugin html:target/cucumber-reports/report.html"
+
+    - name: Upload Cucumber report
+      uses: actions/upload-artifact@v3
+      with:
+        name: cucumber-report
+        path: target/cucumber-reports/report.html
