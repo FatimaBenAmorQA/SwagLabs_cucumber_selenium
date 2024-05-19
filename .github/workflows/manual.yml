@@ -35,6 +35,8 @@ jobs:
         tar -xzf maven.zip
         echo "MAVEN_HOME=$(pwd)/apache-maven-3.8.4" >> $GITHUB_ENV
         echo "$(pwd)/apache-maven-3.8.4/bin" >> $GITHUB_PATH
+        mv apache-maven-3.8.4/conf/settings.xml apache-maven-3.8.4/conf/settings.xml.bak
+        sed 's|<localRepository/>|<localRepository>${env.HOME}/.m2/repository</localRepository>|' apache-maven-3.8.4/conf/settings.xml.bak > apache-maven-3.8.4/conf/settings.xml
 
     - name: Verify Maven installation
       run: mvn --version
