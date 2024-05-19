@@ -30,26 +30,11 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    - name: Install Maven
-      run: |
-        curl -sL https://archive.apache.org/dist/maven/maven-3/3.8.4/binaries/apache-maven-3.8.4-bin.zip -o maven.zip
-        tar -xzf maven.zip
-        echo "MAVEN_HOME=$(pwd)/apache-maven-3.8.4" >> $GITHUB_ENV
-        echo "$(pwd)/apache-maven-3.8.4/bin" >> $GITHUB_PATH
-        mv apache-maven-3.8.4/conf/settings.xml apache-maven-3.8.4/conf/settings.xml.bak
-        sed 's|<localRepository/>|<localRepository>${env.HOME}/.m2/repository</localRepository>|' apache-maven-3.8.4/conf/settings.xml.bak > apache-maven-3.8.4/conf/settings.xml
-
-    - name: Verify Maven installation
-      run: mvn --version
+    - name: Set up Maven
+      uses: ruby/setup-maven@v1
 
     - name: Install dependencies
       run: mvn install -DskipTests
 
-    - name: Run tests and generate Cucumber report
-      run: mvn test -Dcucumber.options="--plugin pretty --plugin html:target/cucumber-report.html"
-
-    - name: Upload Cucumber HTML report
-      uses: actions/upload-artifact@v2
-      with:
-        name: cucumber-report
-        path: target/cucumber-report.html
+    - name: Run tests
+      run: mvn test
